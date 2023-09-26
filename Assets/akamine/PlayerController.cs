@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /// <summary>速度</summary>
     [SerializeField] float _speed = default;
-    [SerializeField] Transform _positionP;
-    [SerializeField] Transform _positionH;
+    /// <summary>速度上限</summary>
     [SerializeField] float _speedMax;
+    /// <summary>Player(ドア)のposition</summary>
+    [SerializeField] Transform _positionP;
+    /// <summary>ホームドアのposition</summary>
+    [SerializeField] Transform _positionH;
+    /// <summary>右に移動</summary>
     Vector2 velo = Vector2.right; 
     Rigidbody2D _rb;
+    /// <summary>移動しているかの判定</summary>
     bool _isMove = true;
     void Start()
     {
@@ -40,6 +46,7 @@ public class PlayerController : MonoBehaviour
     }
     float Distance()
     {
+        /// <summary>車両ドアとホームドアの距離</summary>
         float d = _positionH.position.x - _positionP.position.x;
         return d;
     }
