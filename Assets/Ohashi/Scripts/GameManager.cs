@@ -16,9 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text _timerText;
 
-    private ResultType _resultType;
-
-    public ResultType GameResult { get => _resultType; set => _resultType = value; }
+    [SerializeField]
+    private FadeSystem _fadeSystem;
 
     private float _startTimer = 5.5f;
 
@@ -26,15 +25,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        GameStart();
-        if (_startTimer > 1 && !_startPanel.enabled)
+        if (_startPanel != null)
         {
-            _startTimer -= Time.deltaTime;
-            SetText();
-        }
-        else if(_startTimer < 1.00f && !_startPanel.enabled)
-        {
-            _timerText.enabled = false;
+            GameStart();
+            if (_startTimer > 1 && !_startPanel.enabled)
+            {
+                _startTimer -= Time.deltaTime;
+                SetText();
+            }
+            else if (!_startPanel.enabled)
+            {
+                _timerText.enabled = false;
+            }
         }
     }
 
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// タイマーが0になったらTrueを返す
     /// </summary>
-    public bool StartTImer()
+    public bool IsTimer()
     {
         if (_startTimer > 0.00f)
         {
@@ -64,10 +66,9 @@ public class GameManager : MonoBehaviour
         }
         return true;
     }
-}
 
-public enum ResultType
-{
-    GameClear,
-    GameOver
+    public void GameResult()
+    {
+        _fadeSystem.FadeOut("ResultScene");
+    }
 }
