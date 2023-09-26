@@ -14,7 +14,7 @@ public class AnnouncementTextAnimationController : MonoBehaviour
         _anim = GetComponent<Animator>();
         _announcementText = GetComponent<Text>();
     }
-    void AnimationPlay()
+    public void AnimationPlay()
     {
         _announcementText.text = $"éüÇÕ{_nextStationName[_nextStationIndex]}Å`";
         _anim.SetTrigger("IsSideMove");
