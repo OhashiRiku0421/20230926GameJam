@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _speed = default;
     [SerializeField] Transform _positionP;
     [SerializeField] Transform _positionH;
+    [SerializeField] float _speedMax;
     Vector2 velo = Vector2.right; 
     Rigidbody2D _rb;
+    bool _isMove = true;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -17,12 +19,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _rb.AddForce(velo * _speed);
+        if (_isMove)
+        {
+            _rb.AddForce(velo * _speed);
+            Debug.Log(_rb.velocity.magnitude);  
+            if(_rb.velocity.magnitude < _speedMax)
+            {
+                _rb.velocity = _rb.velocity.normalized * _speedMax;
+               
+            }
+        }
         if(_positionH.position.x > _positionP.position.x && Input.GetButtonDown("Stop"))
         {
-            _rb.velocity = Vector2.zero;
-            _speed = 0;
-
+            _isMove = false;
+        }
+        if(_rb.velocity.magnitude <= 0 )
+        {
             Debug.Log(Distance());
         }
     }
