@@ -76,4 +76,10 @@ public class RankingSystem : MonoBehaviour
         string json = JsonUtility.ToJson(_scoreData);
         File.WriteAllText(filePath, json);
     }
+
+    public List<PlayerScore> GetRanking(float scores,int count)
+    {
+        AddPlayerScore(scores);
+        return GetScores(count);
+    }
 }
