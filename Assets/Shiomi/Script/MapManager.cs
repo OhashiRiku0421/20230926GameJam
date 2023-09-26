@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,15 +14,25 @@ public class MapManager : MonoBehaviour
     [SerializeField] Transform[] _setGoalsPos;
     /// <summary>決定したゴール位置</summary>
     Transform _goalPos;
+
     /// <summary>マークのオブジェクト</summary>
     [SerializeField] GameObject[] _markObjects;
+
+    /// <summary>ミニマップ用のゴールイメージ</summary>
+    //[SerializeField] GameObject _goalImage;
+
+    /// <summary>スライダーの端のRectTransform</summary>
+    //RectTransform _rstartPos;
+    //RectTransform _rendPos;
     // Start is called before the first frame update
     void Start()
     {
         //スライダーを初期化
         _slider.value = 0;
         //ゴールの位置を決定する
-        //_goalPos = _setGoalsPos[0];
+        _goalPos = _setGoalsPos[0];
+
+
         //設定された位置にマークする
         _markObjects[0].GetComponent<Image>().enabled = true;
     }
