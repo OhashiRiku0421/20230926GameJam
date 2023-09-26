@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     /// <summary>ˆÚ“®‚µ‚Ä‚¢‚é‚©‚Ì”»’è</summary>
     bool _isMove = true;
+    [SerializeField] GameManager _gameManager;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isMove)
         {
+            if(_gameManager.IsTimer() == true)
             _rb.AddForce(velo * _speed);
             Debug.Log(_rb.velocity.magnitude);  
             if(_rb.velocity.magnitude < _speedMax)
