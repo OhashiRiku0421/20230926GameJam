@@ -32,21 +32,23 @@ public class MapManager : MonoBehaviour
     [SerializeField] float _thirdAnnounce = 0.9f;
 
     [SerializeField] AnnouncementTextAnimationController _announcementController;
+    int _count;
     public Transform GoalPos => _goalPos;
 
     private void Awake()
     {
         //スライダーを初期化
         _slider.value = 0;
+        _count = Random.Range(0, 3);
         //ゴールの位置を決定する
-        _goalPos = _setGoalsPos[Random.Range(0, 3)];
+        _goalPos = _setGoalsPos[_count];
 
 
     }
     void Start()
     {
         //設定された位置にマークする
-        _markObjects[Random.Range(0, 3)].GetComponent<Image>().enabled = true;
+        _markObjects[_count].GetComponent<Image>().enabled = true;
     }
 
     // Update is called once per frame
