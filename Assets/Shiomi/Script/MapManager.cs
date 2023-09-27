@@ -8,7 +8,6 @@ public class MapManager : MonoBehaviour
 {
     //ミニマップの要素
     [SerializeField] Slider _slider;
-    /// <summary>それぞれのゴールの位置を保存</summary>
     [SerializeField] GameObject _player;
     /// <summary>それぞれのゴールの位置を保存</summary>
     [SerializeField] Transform[] _setGoalsPos;
@@ -59,23 +58,37 @@ public class MapManager : MonoBehaviour
         //Debug.Log(_slider.value);
         if(_slider.value >= _firstAnnounce || _firstActive)
         {
-            //アナウンス処理
-            _announcementController.AnimationPlay();
+            Announce(0);
             _firstActive = false;
         }
 
         if(_slider.value >= _secondAnnounce || _secondActive)
         {
             //アナウンス処理
-            _announcementController.AnimationPlay();
+            Announce(1);
             _secondActive = false;
         }
 
         if(_slider.value >= _thirdAnnounce || _thirdActive)
         {
             //アナウンス処理
-            _announcementController.AnimationPlay();
+            Announce(2);
             _thirdActive = false;
+        }
+    }
+
+    void Announce(int count)
+    {
+        //アナウンス処理
+        if (_goalPos == _setGoalsPos[count])
+        {
+            //目的地の場合
+            _announcementController.AnimationPlay("まもなく、到着いたします。お忘れ物ございませんようお気を付けください。");
+        }
+        else
+        {
+            //通過する場合
+            _announcementController.AnimationPlay("まもなく、通過いたします。");
         }
     }
 }
