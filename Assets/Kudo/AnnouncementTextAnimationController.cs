@@ -6,18 +6,17 @@ using UnityEngine.UI;
 public class AnnouncementTextAnimationController : MonoBehaviour
 {
     Animator _anim;
-    [SerializeField, Header("三つの駅名")] string[] _nextStationName;
     Text _announcementText;
-    int _nextStationIndex = 0;
     void Start()
     {
         _anim = GetComponent<Animator>();
         _announcementText = GetComponent<Text>();
     }
-    public void AnimationPlay()
+    /// <summary>アナウンスTextのアニメーションをPlayするメソッド</summary>
+    /// <param name="anaText">アナウンスのText</param>
+    public void AnimationPlay(string anaText)
     {
-        _announcementText.text = $"次は{_nextStationName[_nextStationIndex]}～";
+        _announcementText.text = $"次は{anaText}";
         _anim.SetTrigger("IsSideMove");
-        _nextStationIndex++;
     }
 }
