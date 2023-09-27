@@ -54,7 +54,11 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         //スライダーの値を更新
-        _slider.value = _player.transform.position.x / _setGoalsPos[_setGoalsPos.Length].transform.position.x;
+        _slider.value = _player.transform.position.x / _setGoalsPos[_setGoalsPos.Length - 1].transform.position.x;
+        if(_slider.value > 1)
+        {
+            _slider.value = 1;
+        }
         //Debug.Log(_slider.value);
         if(_slider.value >= _firstAnnounce && _firstActive)
         {
