@@ -24,7 +24,12 @@ public class PlayerScore : IComparable<PlayerScore>
 [System.Serializable]
 public class ScoreData
 {
-    public List<PlayerScore> _scores = new List<PlayerScore>();
+    public List<PlayerScore> _scores;
+
+    public ScoreData()
+    {
+        _scores = new List<PlayerScore>();
+    }
 
     public void AddScore(float score)
     {
