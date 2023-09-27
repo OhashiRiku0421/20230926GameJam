@@ -77,9 +77,8 @@ public class RankingSystem : MonoBehaviour
         File.WriteAllText(filePath, json);
     }
 
-    public List<PlayerScore> GetRanking(float scores,int count)
+    public List<PlayerScore> GetRanking(int count)
     {
-        AddPlayerScore(scores);
         return GetScores(count);
     }
 }
