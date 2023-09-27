@@ -23,13 +23,14 @@ public class MapManager : MonoBehaviour
     /// <summary>スライダーの端のRectTransform</summary>
     //RectTransform _rstartPos;
     //RectTransform _rendPos;
-
+    float _stationPos;
+    int _setGoalsPosIndex = 0;
     /// <summary>アナウンス判定</summary>
     bool _firstActive, _secondActive, _thirdActive = true;
-    [SerializeField] float _firstAnnounce = 0.2f;
-    [SerializeField] float _secondAnnounce = 0.5f;
-    [SerializeField] float _thirdAnnounce = 0.9f;
-
+    //[SerializeField] float _firstAnnounce = 0.2f;
+    //[SerializeField] float _secondAnnounce = 0.5f;
+    //[SerializeField] float _thirdAnnounce = 0.9f;
+    [SerializeField, Tooltip("アナウンスを流すときのPlayerとゴールの長さ")] float _dis = 1.5f;
     [SerializeField] AnnouncementTextAnimationController _announcementController;
     int _count;
     public Transform GoalPos => _goalPos;
@@ -61,25 +62,36 @@ public class MapManager : MonoBehaviour
             _slider.value = 1;
         }
         //Debug.Log(_slider.value);
-        if(_slider.value >= _firstAnnounce && _firstActive)
-        {
-            Announce(0);
-            _firstActive = false;
-        }
+        //if(_slider.value >= _firstAnnounce && _firstActive)
+        //{
+        //    Announce(0);
+        //    _firstActive = false;
+        //}
 
-        if(_slider.value >= _secondAnnounce && _secondActive)
-        {
-            //アナウンス処理
-            Announce(1);
-            _secondActive = false;
-        }
+        //if(_slider.value >= _secondAnnounce && _secondActive)
+        //{
+        //    //アナウンス処理
+        //    Announce(1);
+        //    _secondActive = false;
+        //}
 
-        if(_slider.value >= _thirdAnnounce && _thirdActive)
+        //if(_slider.value >= _thirdAnnounce && _thirdActive)
+        //{
+        //    //アナウンス処理
+        //    Announce(2);
+        //    _thirdActive = false;
+        //}
+        if(_stationPos - _player.transform.position.x < _dis)
         {
-            //アナウンス処理
-            Announce(2);
-            _thirdActive = false;
+            Announce(_setGoalsPosIndex);
+            StationChangePos();
         }
+    }
+
+    void StationChangePos()
+    {
+        _setGoalsPosIndex++;
+        _stationPos = _setGoalsPos[_setGoalsPosIndex].transform.position.x;
     }
 
     void Announce(int count)
