@@ -13,7 +13,7 @@ public class ResultUIManager : MonoBehaviour
     {
         float myScore = GameManager.GoalDistance;
         _rankingSystem = FindObjectOfType<RankingSystem>();
-        var h = _rankingSystem.GetRanking(myScore, 5);
+        var h = _rankingSystem.GetRanking(5);
         for(int i = 0; i < h.Count; i++)
         {
             _rankingScores[i].text = $"{i+1}ˆÊ {h[i]._score.ToString("00.00")}m";
