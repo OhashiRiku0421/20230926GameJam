@@ -13,6 +13,10 @@ public class ResultUIManager : MonoBehaviour
     {
         float myScore = GameManager.GoalDistance;
         _rankingSystem = FindObjectOfType<RankingSystem>();
+        if(myScore >= 0)
+        {
+            _rankingSystem.AddPlayerScore(myScore);
+        }
         var h = _rankingSystem.GetRanking(5);
         for(int i = 0; i < h.Count; i++)
         {
