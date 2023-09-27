@@ -16,9 +16,9 @@ public class ResultUIManager : MonoBehaviour
         var h = _rankingSystem.GetRanking(myScore, 5);
         for(int i = 0; i < h.Count; i++)
         {
-            _rankingScores[i].text = $"{i+1}ˆÊ {h[i]._score.ToString("00")}";
+            _rankingScores[i].text = $"{i+1}ˆÊ {h[i]._score.ToString("00.00")}m";
         }
-        _MyScore.text = myScore <= 0 ? "" : $"{myScore.ToString("00")}";
+        _MyScore.text = myScore <= 0 ? "" : $"{myScore.ToString("00.00")}m";
     }
 }
     
