@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] GameManager _gameManager;
     /// <summary>‘¬“x</summary>
     [SerializeField] float _speed = default;
     /// <summary>‘¬“xãŒÀ</summary>
@@ -18,10 +19,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     /// <summary>ˆÚ“®‚µ‚Ä‚¢‚é‚©‚Ì”»’è</summary>
     bool _isMove = true;
-    [SerializeField] GameManager _gameManager;
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _positionH = FindObjectOfType<MapManager>().GoalPos;
     }
 
     void Update()
