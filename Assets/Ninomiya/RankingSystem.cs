@@ -29,6 +29,10 @@ public class ScoreData
     public ScoreData()
     {
         _scores = new List<PlayerScore>();
+        for(int i = 0; i < 5; i++)
+        {
+            _scores.Add(new PlayerScore(999.9f));
+        }
     }
 
     public void AddScore(float score)
@@ -75,7 +79,7 @@ public class RankingSystem : MonoBehaviour
         }
     }
 
-    private void SaveScore() //現在のスコアを保存する
+    public void SaveScore() //現在のスコアを保存する
     {
         string filePath = Path.Combine(Application.persistentDataPath, _jsonFileName);
         string json = JsonUtility.ToJson(_scoreData);
