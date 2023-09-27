@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviour
 
     /// <summary>マークのオブジェクト</summary>
     [SerializeField] GameObject[] _markObjects;
-
+    [SerializeField,Header("プレイヤーのポジションXの誤差")] float _playerPos = 68.5f;
     /// <summary>ミニマップ用のゴールイメージ</summary>
     //[SerializeField] GameObject _goalImage;
 
@@ -48,14 +48,15 @@ public class MapManager : MonoBehaviour
     {
         //設定された位置にマークする
         _markObjects[_count].GetComponent<Image>().enabled = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         //スライダーの値を更新
-        _slider.value = _player.transform.position.x / _setGoalsPos[_setGoalsPos.Length - 1].transform.position.x;
-        if(_slider.value > 1)
+        _slider.value = (_player.transform.position.x + _playerPos) / (_setGoalsPos[_setGoalsPos.Length - 1].transform.position.x + _playerPos);
+        if (_slider.value > 1)
         {
             _slider.value = 1;
         }
