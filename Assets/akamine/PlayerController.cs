@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     /// <summary>速度上限</summary>
     [SerializeField] float _speedMax;
     /// <summary>Player(ドア)のposition</summary>
-    [SerializeField] Transform _positionP;
+    [SerializeField] Transform _positionP; 
     /// <summary>ホームドアのposition</summary>
-    [SerializeField] Transform _positionH;
+    private Transform _positionH;
     [SerializeField]
     private FadeSystem _fadeSystem;
     /// <summary>右に移動</summary>
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         {
            // Debug.Log(Distance());
         }
-        Debug.Log(_rb.velocity.magnitude);
+        //Debug.Log(_rb.velocity.magnitude);
         GameOver();
         GameClear();
     }
@@ -70,12 +70,13 @@ public class PlayerController : MonoBehaviour
     {
         if(_positionH.position.x < _positionP.position.x)
         {
-            _fadeSystem.FadeOut("ResultScene");
+            GameManager.GoalDistance = Distance();
+            _fadeSystem.FadeOut("GameOverScene");
         }
     }
     private void GameClear()
     {
-        if(!_isMove && _gameManager.IsTimer() && _rb.velocity.magnitude <= 1)
+        if(!_isMove && _gameManager.IsTimer() && _rb.velocity.magnitude <= 0)
         {
             Debug.Log("Clear");
             GameManager.GoalDistance = Distance();
