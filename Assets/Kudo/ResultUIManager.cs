@@ -18,7 +18,7 @@ public class ResultUIManager : MonoBehaviour
         {
             _rankingScores[i].text = $"{i+1}ˆÊ {h[i]._score.ToString("00")}";
         }
-        _MyScore.text = myScore < 0 ? "" : $"{myScore.ToString("00")}";
+        _MyScore.text = myScore <= 0 ? "" : $"{myScore.ToString("00")}";
     }
 }
     
