@@ -23,12 +23,17 @@ public class GameManager : MonoBehaviour
 
     public static float GoalDistance;
 
+    private void Start()
+    {
+        _timerText.enabled = false;
+    }
     private void Update()
     {
         if (_startPanel != null)
         {
             GameStart();
-            if (_startTimer > 1 && !_startPanel.enabled)
+            
+            if (_startTimer > 1.00f && !_startPanel.enabled)
             {
                 _startTimer -= Time.deltaTime;
                 SetText();
@@ -51,7 +56,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(_startKey))
         {
             _startPanel.DOFade(0, 0.5f)
-                .OnComplete(() => _startPanel.enabled = false);
+                .OnComplete(() =>
+                {
+                    _startPanel.enabled = false;
+                    _timerText.enabled = true;
+                    SetText();
+                });
         }
     }
 
@@ -60,7 +70,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public bool IsTimer()
     {
-        if (_timerText.enabled)
+        if (_startTimer > 1.0f)
         {
             return false;
         }
@@ -71,4 +81,9 @@ public class GameManager : MonoBehaviour
     {
         _fadeSystem.FadeOut("ResultScene");
     }
+}
+public enum ResultType
+{ 
+    GameOver,
+    GameClear
 }
