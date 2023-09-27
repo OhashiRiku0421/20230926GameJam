@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public bool IsTimer()
     {
-        if (_startTimer > 0.00f)
+        if (_timerText.enabled)
         {
             return false;
         }
