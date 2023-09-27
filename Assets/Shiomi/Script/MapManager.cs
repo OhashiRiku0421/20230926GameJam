@@ -54,22 +54,22 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         //スライダーの値を更新
-        _slider.value = _player.transform.position.x / _setGoalsPos[2].transform.position.x;
+        _slider.value = _player.transform.position.x / _setGoalsPos[_setGoalsPos.Length].transform.position.x;
         //Debug.Log(_slider.value);
-        if(_slider.value >= _firstAnnounce || _firstActive)
+        if(_slider.value >= _firstAnnounce && _firstActive)
         {
             Announce(0);
             _firstActive = false;
         }
 
-        if(_slider.value >= _secondAnnounce || _secondActive)
+        if(_slider.value >= _secondAnnounce && _secondActive)
         {
             //アナウンス処理
             Announce(1);
             _secondActive = false;
         }
 
-        if(_slider.value >= _thirdAnnounce || _thirdActive)
+        if(_slider.value >= _thirdAnnounce && _thirdActive)
         {
             //アナウンス処理
             Announce(2);
