@@ -8,7 +8,7 @@ using System;
 [System.Serializable]
 public class PlayerScore : IComparable<PlayerScore>
 {
-    public float _score;
+    public float _score = 100;
 
     public PlayerScore(float score)
     {
@@ -41,7 +41,7 @@ public class RankingSystem : MonoBehaviour
 
     private void Awake()
     {
-        LordScore();
+        LoadScore();
     }
 
     public void AddPlayerScore(float score)
@@ -55,7 +55,7 @@ public class RankingSystem : MonoBehaviour
         return _scoreData._scores.GetRange(0, Mathf.Min(count, _scoreData._scores.Count));
     }
 
-    private void LordScore()　//スコアの読み込み
+    private void LoadScore()　//スコアの読み込み
     {
         string filePath = Path.Combine(Application.persistentDataPath, _jsonFileName);
 
